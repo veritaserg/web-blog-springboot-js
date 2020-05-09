@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -23,7 +25,10 @@ public class MainController {
     public String main(Model model) {
         return "main";
     }
-
+    @GetMapping("/full-main")
+    public String fullmain(Model model) {
+        return "full-main";
+    }
     @GetMapping("/contact")
     public String contact() {
         return "contact";
@@ -40,5 +45,10 @@ public class MainController {
         Collections.reverse(postList);
         model.addAttribute("posts", postList);
         return "blog-list";
+    }
+
+    @RequestMapping("/user")
+    public Principal user(Principal principal) {
+        return principal;
     }
 }
